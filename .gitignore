@@ -16,3 +16,5 @@ jspm_packages
 package-lock.json
 project/*
 !project/src/
+*.txt
+*.token
