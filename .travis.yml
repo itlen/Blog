@@ -7,5 +7,5 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GH_TOKEN
+  github_token: $GHTOKEN
   local_dir: project/dev
