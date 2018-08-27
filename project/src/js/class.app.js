@@ -50,7 +50,7 @@ class App {
 		
 		this.post.innerHTML = html.replace('<script>','');
 
-		this.bind('a','click',(e)=>{
+		this.bind('a:not(.git)','click',(e)=>{
 			let href = e.target.getAttribute('href');
 			this.click(href,e);
 		});
