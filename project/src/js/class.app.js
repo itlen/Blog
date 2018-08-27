@@ -164,7 +164,7 @@ const app = new App({
 	hompage: document.querySelector('main')
 });
 
-document.querySelectorAll('a').forEach(item=>{
+document.querySelectorAll('a:not(.git)').forEach(item=>{
 	item.addEventListener('click',function(e){
 		let href = e.target.getAttribute('href');
 		app.click(href,e);		

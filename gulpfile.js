@@ -43,7 +43,8 @@ gulp.task('lint', function(){
 				'background': 'crimson',
       			'max-height': '70vh',
       			'overflow-y': 'scroll',
-      			'font-size': '1.4rem'
+      			'font-size': '1.4rem',
+      			'display': 'none'
       		}
     	})
 	];
@@ -112,7 +113,7 @@ gulp.task('css', function(){
 			'project/src/css/style.css',
 			'project/src/css/mobile.css',
 			'project/src/css/posts.css'])
-		.pipe(postcss(processors))
+		// .pipe(postcss(processors))
 		.pipe(concat('build.style.css'))
     	.pipe(autoprefixer({ browsers: ['> 0% in RU'] }))
 		.pipe(cssnano())
