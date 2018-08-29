@@ -1,6 +1,6 @@
 'use strict'
 
-import App from './class.App.js';
+import App from './class.app.js';
 
 const app = new App({
 	wrapper: document.getElementById('posts'),
