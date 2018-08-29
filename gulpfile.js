@@ -8,7 +8,6 @@ var gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
 	htmlreplace = require('gulp-html-replace'),
 	minify = require('gulp-minify'),
-	babel = require("gulp-babel"),
 	postcss = require('gulp-postcss'),
 	stylelint = require('stylelint'),
 	config = require('stylelint-config-standard'),
@@ -21,12 +20,14 @@ var gulp = require('gulp'),
 gulp.task('clean', function () {  
     gulp.src('project/src/fix')
         .pipe(clean());
-
 });
 
-gulp.task('clean:build', function () {  
-    gulp.src('project/itlen.github.io/assets,project/itlen.github.io/css,project/itlen.github.io/data,project/itlen.github.io/examples,project/itlen.github.io/js,project/itlen.github.io/browserconfig.xml,project/itlen.github.io/index.html,project/itlen.github.io/manifest.json,project/itlen.github.io/sw.js,project/itlen.github.io/.travis.yml')
-  	   .pipe(clean());
+gulp.task('clean:build', function () {
+
+	const src = 'project/build/assets,project/build/css,project/build/data,project/build/js,project/build/browserconfig.xml,project/build/index.html,project/build/manifest.json,project/build/sw.js,project/build/.travis.yml';
+
+    gulp.src(src).pipe(clean());
+
 });
 
 gulp.task('lint', function(){
@@ -66,16 +67,13 @@ gulp.task('moveAssets', function(){
 	]
 
     gulp.src('project/src/assets/**/*') 
-    .pipe(gulp.dest('project/itlen.github.io/assets')); 
+    .pipe(gulp.dest('project/build/assets')); 
 
     gulp.src('project/src/data/**/*') 
-    .pipe(gulp.dest('project/itlen.github.io/data')); 
-
-    gulp.src('project/src/examples/**/*') 
-    .pipe(gulp.dest('project/itlen.github.io/examples')); 
+    .pipe(gulp.dest('project/build/data')); 
 
     gulp.src(filesToMove)
-    .pipe(gulp.dest('project/itlen.github.io')); 
+    .pipe(gulp.dest('project/build')); 
 
 }); 
 
@@ -85,22 +83,23 @@ gulp.task('html', function () {
         .pipe(rigger())
 		.pipe(htmlreplace({
 			'css': 'css/build.style.css',
-			'js': 'js/build.class.app-min.js',
-			'pre': '<link href="css/build.style.css" rel="preload" as="style"><link href="js/build.class.app-min.js" rel="preload" as="script">'
+			'js': 'js/main.js',
+			'pre': '<link href="css/build.style.css" rel="preload" as="style"><link href="js/build.js" rel="preload" as="script">'
 		}))
-		.pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('project/itlen.github.io'))
+		// .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('project/build'))
         .pipe(bs.reload({stream:true}));
 });
 
 gulp.task('js', function () {
 	gulp.src('project/src/js/class.app.js')
-	    .pipe(concat('build.class.app.js'))
-	    .pipe(babel({ presets: ['env'] }))
-	    .pipe(minify())
-	    .pipe(gulp.dest('project/itlen.github.io/js'))
+	    // .pipe(concat('build.class.app.js'))
+	    // .pipe(babel({ presets: ['env'] }))
+	    // .pipe(minify())
+	    // .pipe(gulp.dest('project/build/js'))
         .pipe(bs.reload({stream:true}));
 });
+
 
 
 gulp.task('css', function(){
@@ -117,7 +116,7 @@ gulp.task('css', function(){
 		.pipe(concat('build.style.css'))
     	.pipe(autoprefixer({ browsers: ['> 0% in RU'] }))
 		.pipe(cssnano())
-    	.pipe(gulp.dest('project/itlen.github.io/css'))
+    	.pipe(gulp.dest('project/build/css'))
     	.pipe(bs.reload({stream:true}));
 });
 
@@ -139,5 +138,28 @@ gulp.task('watch', ['browser-sync','html','css','js'], function(){
 gulp.task('default',['watch'], function(){});
 
 gulp.task('build', ['clean:build','html','js','css','moveAssets'], function(){
-	console.dir('build is complete');
+	
+	console.clear();
+
+	console.log('*******************');
+	console.log('gulp build complete');
+	console.log('*******************');
+
+	const webpack  = require('webpack');
+	const webpackConfig = require('./webpack.config.js');
+
+	webpack(webpackConfig, function(){
+		console.log('**********************');
+		console.log('webpack build complete');
+		console.log('**********************');
+		bs({
+			server: {
+				baseDir: 'project/build'
+			},
+			notify: false
+		});
+	});
+
+	
+
 });

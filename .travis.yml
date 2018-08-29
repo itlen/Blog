@@ -8,4 +8,4 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GHTOKEN
-  local_dir: project/itlen.github.io
+  local_dir: project/build
