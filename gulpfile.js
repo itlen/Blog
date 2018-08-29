@@ -14,7 +14,9 @@ var gulp = require('gulp'),
 	cssnext = require('postcss-cssnext');
 	reporter = require('postcss-browser-reporter'),
 	stylefmt = require('gulp-stylefmt')
-	clean = require('gulp-clean');
+	clean = require('gulp-clean'),
+	gutil = require('gulp-util'),
+	notifier = require('node-notifier');
 
 
 gulp.task('clean', function () {  
@@ -137,7 +139,7 @@ gulp.task('watch', ['browser-sync','html','css','js'], function(){
 
 gulp.task('default',['watch'], function(){});
 
-gulp.task('build', ['clean:build','html','js','css','moveAssets'], function(){
+gulp.task('build', ['clean:build','html','js','css','moveAssets'], function(done){
 	
 	console.clear();
 
@@ -147,12 +149,36 @@ gulp.task('build', ['clean:build','html','js','css','moveAssets'], function(){
 
 	const webpack  = require('webpack');
 	const webpackConfig = require('./webpack.config.js');
+	
+	let statsLog = {
+	  colors: true,
+	  reasons: true
+	};
+	webpack(webpackConfig, onComplete);
 
-	webpack(webpackConfig, function(){
-		console.log('**********************');
-		console.log('webpack build complete');
-		console.log('**********************');
-	});
+	function onComplete(error, stats) {
+		if (error) {
+			onError(error);
+		} else if ( stats.hasErrors() ) {
+			onError( stats.toString(statsLog) );
+		} else {
+			onSuccess( stats.toString(statsLog) );
+		}
+	}
+
+	function onError(error) {
+		let formatedError = new gutil.PluginError('webpack', error);
+		notifier.notify({
+			title: `Error: ${formatedError.plugin}`,
+			message: formatedError.message
+		});
+		done(formatedError);
+	}
+
+	function onSuccess(detailInfo) {
+		gutil.log('[webpack]', detailInfo);
+		done();
+	}
 
 	
 
