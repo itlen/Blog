@@ -83,7 +83,7 @@ gulp.task('html', function () {
         .pipe(rigger())
 		.pipe(htmlreplace({
 			'css': 'css/build.style.css',
-			'js': 'js/main.js',
+			'js': 'js/build.js',
 			'pre': '<link href="css/build.style.css" rel="preload" as="style"><link href="js/build.js" rel="preload" as="script">'
 		}))
 		// .pipe(htmlmin({collapseWhitespace: true}))
