@@ -149,9 +149,11 @@ gulp.task('build', ['clean:build','html','js','css','moveAssets'], function(){
 	const webpackConfig = require('./webpack.config.js');
 
 	webpack(webpackConfig, function(){
+		
 		console.log('**********************');
 		console.log('webpack build complete');
 		console.log('**********************');
+
 	});
 
 	
