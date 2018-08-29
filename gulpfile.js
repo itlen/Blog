@@ -152,12 +152,6 @@ gulp.task('build', ['clean:build','html','js','css','moveAssets'], function(){
 		console.log('**********************');
 		console.log('webpack build complete');
 		console.log('**********************');
-		bs({
-			server: {
-				baseDir: 'project/build'
-			},
-			notify: false
-		});
 	});
 
 	
