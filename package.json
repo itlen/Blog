@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
-    "build": "webpack --mode production"
+    "build": "gulp build"
   },
   "author": "me",
   "license": "ISC",
