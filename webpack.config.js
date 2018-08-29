@@ -3,6 +3,7 @@ const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.trim() : 'developme
 const path = require('path');
 module.exports = {
 
+  mode: process.env.NODE_ENV ? process.env.NODE_ENV.trim() : 'production',
   entry: { main: './project/src/js/main.js' },
   output: {
     path: path.resolve(__dirname, './project/build/js/'),
