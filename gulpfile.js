@@ -45,8 +45,6 @@ gulp.task('eslint', function () {
 })
 
 gulp.task('clean', function () {
-  console.clear()
-
   gulp.src('project/src/css_lint')
     .pipe(clean())
 })
