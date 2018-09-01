@@ -89,6 +89,8 @@ gulp.task('moveAssets', function () {
     'project/src/.travis.yml'
   ]
 
+  console.dir('test')
+
   gulp.src('project/src/assets/**/*')
     .pipe(gulp.dest('project/build/assets'))
 
