@@ -169,12 +169,6 @@ gulp.task('build', ['clean:build', 'html', 'css', 'moveAssets'], function (done)
       onError(stats.toString(statsLog))
     } else {
       onSuccess(stats.toString(statsLog))
-      bs({
-        server: {
-          baseDir: 'project/build'
-        },
-        notify: false
-      })
     }
   }
 
