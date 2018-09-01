@@ -1,28 +1,27 @@
 
-import { app } from  "./app.js";
-
+import { app } from './app.js'
 // const app = new App('posts');
 /*************************************************************************/
 
-	app.getData(window.location.hash);
-	
-	window.addEventListener('hashchange',()=>{
-		app.getData(window.location.hash);
-	});
+app.getData(window.location.hash)
 
-	document.querySelectorAll('a').forEach((item)=>{
-		item.addEventListener('click',function(e){
-			let href = this.getAttribute('href');
-			if ( href != '#' && href.indexOf('data') < 0) {
-				e.preventDefault();
-				window.location.hash = '/'+href;
-			} else {
-				console.dir('data');
-			}
-		});
-	});
-	
-	document.body.className = '';
+window.addEventListener('hashchange', () => {
+  app.getData(window.location.hash)
+})
+
+document.querySelectorAll('a').forEach((item) => {
+  item.addEventListener('click', function (e) {
+    let href = this.getAttribute('href')
+    if (href != '#' && href.indexOf('data') < 0) {
+      e.preventDefault()
+      window.location.hash = '/' + href
+    } else {
+      console.dir('data')
+    }
+  })
+})
+
+document.body.className = ''
 // function(){
 // 	Object.prototype.on = function(f,c){return Array.from(this,(i)=>i.addEventListener(f,c));}
 // 	Object.prototype.find = function(s){return this.querySelectorAll(s);}
@@ -62,13 +61,13 @@ import { app } from  "./app.js";
 // 		catch {Array.from(this, (i)=>i.classList.toggle(className));}
 // 		finally {return this;}
 // 	}
-	
+
 // 	Object.prototype.addClass = function(className){
 // 		try { this.classList.add(className);}
 // 		catch {Array.from(this, (i)=>i.classList.add(className));}
 // 		finally {return this;}
 // 	}
-	
+
 // 	Object.prototype.removeClass = function(className){
 // 		try { this.classList.remove(className);}
 // 		catch {Array.from(this, (i)=>i.classList.remove(className));}
@@ -82,18 +81,3 @@ import { app } from  "./app.js";
 // 	};
 
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

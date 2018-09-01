@@ -16,6 +16,7 @@ jspm_packages
 package-lock.json
 project/*
 !project/src/
-project/src/fix
+project/src/js_lint
+project/src/css_lint
 *.txt
 *.token

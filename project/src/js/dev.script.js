@@ -1,4 +1,4 @@
-export default class App {
+class App {
   constructor () {
     let args = arguments[0]
     this.wrapper = args.wrapper
@@ -54,7 +54,6 @@ export default class App {
   click (href, event) {
     let blank = href.indexOf('http')
     let examples = href.indexOf('examples')
-    console.dir(href)
 
     if (href !== '#' && blank < 0 && examples < 0) {
       event.preventDefault()
@@ -139,3 +138,20 @@ export default class App {
     }
   }
 }
+
+const app = new App({
+  wrapper: document.getElementById('posts'),
+  post: document.querySelector('.posts-wrapper'),
+  hompage: document.querySelector('main')
+})
+
+document.querySelectorAll('a:not(.git)').forEach(item => {
+  item.addEventListener('click', function (e) {
+    let href = e.target.getAttribute('href')
+    app.click(href, e)
+  })
+})
+
+window.addEventListener('hashchange', () => { app.init() })
+
+document.body.className = ''

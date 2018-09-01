@@ -1,21 +1,20 @@
 'use strict'
 
-import App from './class.app.js';
+import App from './class.app.js'
 
 const app = new App({
-	wrapper: document.getElementById('posts'),
-	post: document.querySelector('.posts-wrapper'),
-	hompage: document.querySelector('main')
-});
+  wrapper: document.getElementById('posts'),
+  post: document.querySelector('.posts-wrapper'),
+  hompage: document.querySelector('main')
+})
 
-document.querySelectorAll('a:not(.git)').forEach(item=>{
-	item.addEventListener('click',function(e){
-		let href = e.target.getAttribute('href');
-		app.click(href,e);		
-	})
-});
+document.querySelectorAll('a:not(.git)').forEach(item => {
+  item.addEventListener('click', function (e) {
+    let href = e.target.getAttribute('href')
+    app.click(href, e)
+  })
+})
 
+window.addEventListener('hashchange', () => { app.init() })
 
-window.addEventListener('hashchange',()=>{ app.init(); });
-
-document.body.className ='';
+document.body.className = ''

@@ -11,44 +11,37 @@
   .contacts-block {
     width: var(--col-3);
   }
-  
+
   .central-text {
     width: var(--col-4);
   }
 }
 
-
-
-@media (max-width: 1240px){
-
+@media (max-width: 1240px) {
   .minimal {
     font-size: 12em;
-  }    
-
+  }
 }
-
-
 
 @media (max-width: 950px) {
-  .minimal {font-size: 8em;}    
+  .minimal {
+    font-size: 8em;
+  }
 }
-
-
 
 @media (max-width: 1024px) {
   .menu-decorator {
     display: none;
   }
-  
+
   .menu {
     width: var(--col-3);
   }
-  
+
   .central-text {
     width: var(--col-5);
   }
 }
-
 
 @media (max-width: 866px) {
   .decorator {
@@ -60,89 +53,87 @@
   .logo {
     width: var(--col-2);
   }
-  
+
   .bio,
   .contacts-block {
     width: var(--col-3);
   }
-  
+
   .bio {
-    order:2;padding: 64px 0;
+    order: 2;
+    padding: 64px 0;
   }
-  
+
   .bio-separator {
     display: none;
   }
-  
+
   .menu-decorator {
     display: block;
   }
-  
+
   .central-text {
     padding: var(--sub-col) var(--sub-col) 0 var(--sub-col);
   }
 
   .privacy {
-    width: var(--col-8);padding: 2em 0;
+    width: var(--col-8);
+    padding: 2em 0;
   }
-  
+
   .date {
     width: var(--col-6);
     padding: 0 var(--col-1) 64px var(--col-1);
     order: 2;
     text-align: left;
   }
-    
+
   .minimal {
     font-size: 4em;
-  }    
+  }
 }
 
-
 @media (max-width: 480px) {
-    html{
-      --base-width: 25%;
-    }
+  html {
+    --base-width: 25%;
+  }
 
-    .logo {
-        width: var(--col-1);
-    }
+  .logo {
+    width: var(--col-1);
+  }
 
-    .contacts-block {
-      width: var(--col-3);
-    }
+  .contacts-block {
+    width: var(--col-3);
+  }
 
-    .bio {
-      width: var(--col-3);
-    }
+  .bio {
+    width: var(--col-3);
+  }
 
-    .central-text,
-    .bio,
-    .privacy {
-      padding: 2em 0;
-    }
+  .central-text,
+  .bio,
+  .privacy {
+    padding: 2em 0;
+  }
 
-    h2.contacts {
-      font-size: 5.4em;
-    }
+  .date {
+    text-align: left;
+  }
 
-    .date {
-      text-align: left;
-    }
-    h2.contacts {
-      color: inherit;
-      text-shadow: none;
-    }
+  h2.contacts {
+    font-size: 5.4em;
+    color: inherit;
+    text-shadow: none;
+  }
 }
 
 @media (max-width: 386px) {
+  h2.contacts {
+    font-size: 4.4em;
+  }
 
-    h2.contacts {
-      font-size: 4.4em;
-    }
-
-    .menu-decorator {
-      display: none;
-    }
+  .menu-decorator {
+    display: none;
+  }
 }
 
