@@ -87,8 +87,6 @@ gulp.task('moveAssets', function () {
     'project/src/.travis.yml'
   ]
 
-  console.dir('test')
-
   gulp.src('project/src/assets/**/*')
     .pipe(gulp.dest('project/build/assets'))
 
@@ -146,12 +144,6 @@ gulp.task('watch', ['browser-sync', 'html', 'lint', 'css', 'eslint'], function (
 gulp.task('default', ['watch'], function () {})
 
 gulp.task('build', ['clean:build', 'html', 'css', 'moveAssets'], function (done) {
-  console.clear()
-
-  console.log('*******************')
-  console.log('gulp build complete')
-  console.log('*******************')
-
   const webpack = require('webpack')
   const webpackConfig = require('./webpack.config.js')
 
