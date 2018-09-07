@@ -54,7 +54,7 @@ gulp.task('clean:build', function () {
   gulp.src(src).pipe(clean())
 })
 
-gulp.task('lint', ['clean'], function () {
+gulp.task('lint', function () {
   var processors = [
     stylelint({
       failAfterError: false,
@@ -136,9 +136,9 @@ gulp.task('browser-sync', function () {
 })
 
 gulp.task('watch', ['browser-sync', 'html', 'lint', 'css', 'eslint'], function () {
-  gulp.watch('project/src/css/*.css', ['lint'], function () {})
+  gulp.watch('project/src/css/*.css', ['lint'], bs.reload({ stream: true }))
   gulp.watch('project/src/*.html', bs.reload({ stream: true }))
-  gulp.watch('project/src/js/**/*.js', ['clean', 'eslint'], bs.reload({ stream: true }))
+  gulp.watch('project/src/js/**/*.js', ['eslint'], bs.reload({ stream: true }))
 })
 
 gulp.task('default', ['watch'], function () {})

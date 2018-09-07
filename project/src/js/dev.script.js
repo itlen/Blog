@@ -14,6 +14,7 @@ class App {
     document.body.className = ''
     if (state) document.body.classList.add(state)
     if (html) this.post.innerHTML = html
+    return this
   }
 
   bind (cssSelectors, events, callback) {
@@ -41,9 +42,10 @@ class App {
       [...data].forEach(i => {
         html += '<br><a class="read-more" href="post/' + i.id + '">' + i.title + '</a>'
       })
+      html += '<br><a href="post/3">Optio, pariatur, quam!</a>'
     }
 
-    this.post.innerHTML = html.replace('<script>', '')
+    this.post.innerHTML = html.replace('<script>', '') // xss
 
     this.bind('a:not(.git)', 'click', (e) => {
       let href = e.target.getAttribute('href')
@@ -88,11 +90,10 @@ class App {
         cache.match(url).then(response => {
           console.dir('кэш резолвится c ' + response + ', ' + response.status)
 
-          if (response.status === 200) { // don't check {response && response.status === 200
+          if (response.status === 200) { // don't check {response && response.status === 200}
             response.json().then(data => {
-              this.setState('done')
+              this.setState('done').renderPost(data)
               console.dir('отдали из кэша')
-              this.renderPost(data)
             }).catch(err => {
               console.dir('но с ошибкой')
               this.setState('done', '<code>' + err + '</code><br><br>Ошибка парсинга Json объекта</p>')
@@ -108,12 +109,11 @@ class App {
                 let resClone = response.clone()
 
                 response.json().then(data => {
-                  this.done()
+                  this.setState('done').renderPost(data)
                   console.dir('отдали из сети')
-                  this.renderPost(data)
                 }).catch((err) => {
                   console.dir('Ошибка парсинга Json ответа')
-                  this.srState('done', '<code>' + err + '</code><br><br>Ошибка парсинга Json')
+                  this.setState('done', '<code>' + err + '</code><br><br>Ошибка парсинга Json')
                 })
 
                 cache.put(url, resClone).then(e => {
