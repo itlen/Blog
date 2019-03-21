@@ -1,4 +1,3 @@
-
 @media (max-width: 1280px) {
   .bio-separator {
     width: var(--col-1);
@@ -136,4 +135,3 @@
     display: none;
   }
 }
-
