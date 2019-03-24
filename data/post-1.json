@@ -1,0 +1,6 @@
+  [{
+    "userId": 1,
+    "id": 1,
+    "title": "Почему UX Яндекс.Музыка гавно",
+    "body": "<div>Добавьте к&nbsp;элементам "меню" атрибут role со&nbsp;значениями:</div><ul class=\"list-none padding-bottom-10\"><li><code>menubar</code>&nbsp;— горизонтальная панель меню;</li><li><code>menu</code>&nbsp;— меню второго уровня;</li><li><code>menuitem</code>&nbsp;— отдельный пункт меню.</li><li><code>separator</code>&nbsp;— разделитель между двумя группами элементов меню.</li></ul><p>Чтобы настроить фокус на&nbsp;пункты меню с&nbsp;помощью клавиатуры, присвойте атрибут <code>tabindex=\"-1\"</code>. Первому элементу главного меню («Шапки, шарфы, варежки» в&nbsp;примере выше) добавьте значение <code>tabindex=\"0\"</code>.</p>"
+  }]
